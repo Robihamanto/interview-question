@@ -2,35 +2,23 @@ import Foundation
 import UIKit
 
 
-/// Compelxity: O(1)
-func isPalindrome(text: String) -> Bool {
-    
-    let reversedText = String(text).reversed()
-    
-    if text != String(reversedText) {
-        return false
-    }
-    
-    return true
-}
-
-isPalindrome(text: "kasurrusak")
-
-
 /// Complexity: O(n)
-func isPalindrome2(text: String) -> Bool {
+func removeCharacterFromString(text: String, char: Character) -> String {
     
-    var reversedText = ""
-
+    var result = ""
+    
     for item in text {
-        reversedText = reversedText + String(item)
+        if item != char {
+            result =  result + String(item)
+        }
     }
     
-    if reversedText != text {
-        return false
-    }
-    
-    return true
+    return result
 }
 
-isPalindrome2(text: "ANJAY")
+removeCharacterFromString(text: "abc", char: "a")
+removeCharacterFromString(text: "abd", char: "b")
+removeCharacterFromString(text: "abcd", char: "d")
+removeCharacterFromString(text: "aaaaaaaaaaaaaa", char: "a")
+removeCharacterFromString(text: "aaaaaaaaaaaaaab", char: "a")
+removeCharacterFromString(text: "", char: "d")
