@@ -7,24 +7,51 @@ import UIKit
 
 // Rule
 // Duplicate characters on String
-// If there is two charater reccuring, return the 1st one
+// If there is two charater reccuring, return the character
 // If there is no reccuring character, return null
 
 
-func reccuringCharacters(text: String, char: Character) -> Character? {
+func reccuringCharacters(text: String) -> Character? {
+    
+    for char in text {
+        var count = 0
+        for subChar in text {
+            if char == subChar {
+                count += 1
+                if count > 1 {
+                    return char
+                }
+            }
+        }
+    }
+    
+    return nil
+}
+
+reccuringCharacters(text: "DXBCABAX")
+
+struct Reccurence {
+    var priority: Int
+    var key: Character
+    var total: Int
+}
+
+
+func reccuringCharacters2(text: String) -> Character? {
     
     // 1. Iterate string to obtain the char
     // 2. Count is there any char > 1
     // 3. If not found return nil
     
-    var textCharacters = [String: Int]()
+    var textCharacters = [Character: Int]()
     
     for item in text {
-        textCharacters[String(item)] = textCharacters[String(item)] ?? 0 + 1
+        let currentValue = textCharacters[item] ?? 0
+        textCharacters[item] = currentValue + 1
     }
     
     for item in text {
-        if textCharacters[String(item)]! > 1 {
+        if textCharacters[item] ?? 0 > 1 {
             return item
         }
     }
@@ -33,4 +60,5 @@ func reccuringCharacters(text: String, char: Character) -> Character? {
 }
 
 
-reccuringCharacters(text: "ABCA", char: "A")
+reccuringCharacters2(text: "DXBCABAX")
+
