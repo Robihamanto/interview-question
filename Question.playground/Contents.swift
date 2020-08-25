@@ -1,24 +1,36 @@
 import Foundation
 import UIKit
 
+// Input
+// String & Characters
+// Case Sensitive
 
-/// Complexity: O(n)
-func removeCharacterFromString(text: String, char: Character) -> String {
+// Rule
+// Duplicate characters on String
+// If there is two charater reccuring, return the 1st one
+// If there is no reccuring character, return null
+
+
+func reccuringCharacters(text: String, char: Character) -> Character? {
     
-    var result = ""
+    // 1. Iterate string to obtain the char
+    // 2. Count is there any char > 1
+    // 3. If not found return nil
+    
+    var textCharacters = [String: Int]()
     
     for item in text {
-        if item != char {
-            result =  result + String(item)
+        textCharacters[String(item)] = textCharacters[String(item)] ?? 0 + 1
+    }
+    
+    for item in text {
+        if textCharacters[String(item)]! > 1 {
+            return item
         }
     }
     
-    return result
+    return nil
 }
 
-removeCharacterFromString(text: "abc", char: "a")
-removeCharacterFromString(text: "abd", char: "b")
-removeCharacterFromString(text: "abcd", char: "d")
-removeCharacterFromString(text: "aaaaaaaaaaaaaa", char: "a")
-removeCharacterFromString(text: "aaaaaaaaaaaaaab", char: "a")
-removeCharacterFromString(text: "", char: "d")
+
+reccuringCharacters(text: "ABCA", char: "A")
