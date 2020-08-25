@@ -2,37 +2,58 @@ import Foundation
 import UIKit
 
 
-// 0 1 1 2 3 5 8 13 21 34 55
+// SILENT & LISTEN | RACE & CARE | PART & TRAP
 
-func findFibonacci(n: Int) -> Int {
+
+func isAnagram(text1: String, text2: String) -> Bool {
     
-    if n == 0 || n == 1 {
-        return n
+    if text1.count != text2.count {
+        return false
     }
     
-    var num1 = 0
-    var num2 = 1
+    var text1Dict = [Character: Int]()
+    var text2Dict = [Character: Int]()
     
-    for _ in 2 ... n {
-        let nextNum = num1 + num2
-        num1 = num2
-        num2 = nextNum
+    for item in text1 {
+        text1Dict[item] = text1Dict[item] ?? 0 + 1
     }
     
-    return num2
+    for item in text2 {
+        text2Dict[item] = text2Dict[item] ?? 0 + 1
+    }
+    
+    if text1Dict != text2Dict {
+        return false
+    }
+    
+    return true
 }
 
-findFibonacci(n: 7)
+isAnagram(text1: "SILENT", text2: "LISTEE")
 
 
-func findFibonacciRecursive(n: Int) -> Int {
+func isAnagram2(text1: String, text2: String) -> Bool {
     
-    if n < 2 {
-        return n
+    if text1.count != text2.count {
+        return false
     }
     
-    return findFibonacciRecursive(n: n-1) + findFibonacciRecursive(n: n-2)
+    var text1Dict = [Character: Int]()
+    var text2Dict = [Character: Int]()
+    
+    for index in 0 ..< text1.count {
+        
+        text1Dict[Array(text1)[index]] = text1Dict[Array(text1)[index]] ?? 0 + 1
+        text2Dict[Array(text2)[index]] = text2Dict[Array(text2)[index]] ?? 0 + 1
+        
+    }
+    
+    if text1Dict == text2Dict {
+        return true
+    }
+    
+    return false
 }
 
 
-findFibonacciRecursive(n: 7)
+isAnagram2(text1: "SILENT", text2: "LISTEE")
