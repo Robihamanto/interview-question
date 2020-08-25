@@ -1,64 +1,40 @@
 import Foundation
 import UIKit
 
-// Input
-// String & Characters
-// Case Sensitive
+// Is the first array is have an common characters to second array
 
-// Rule
-// Duplicate characters on String
-// If there is two charater reccuring, return the character
-// If there is no reccuring character, return null
-
-
-func reccuringCharacters(text: String) -> Character? {
+func containsCommonItems(_ array1: [String],_ array2: [String]) -> Bool {
     
-    for char in text {
-        var count = 0
-        for subChar in text {
-            if char == subChar {
-                count += 1
-                if count > 1 {
-                    return char
-                }
+    for item1 in array1 {
+        for item2 in array2 {
+            if item1 == item2 {
+                return true
             }
         }
     }
-    
-    return nil
+
+    return false
 }
 
-reccuringCharacters(text: "DXBCABAX")
+let arr1 = ["a", "b", "c"]
+let arr2 = ["x", "y", "z"]
 
-struct Reccurence {
-    var priority: Int
-    var key: Character
-    var total: Int
-}
+containsCommonItems(arr1, arr2)
 
 
-func reccuringCharacters2(text: String) -> Character? {
+func containsCommonItems2(_ array1: [String],_ array2: [String]) -> Bool {
     
-    // 1. Iterate string to obtain the char
-    // 2. Count is there any char > 1
-    // 3. If not found return nil
+    var dict = [String: Bool]()
     
-    var textCharacters = [Character: Int]()
-    
-    for item in text {
-        let currentValue = textCharacters[item] ?? 0
-        textCharacters[item] = currentValue + 1
+    for item in array1 {
+        dict[item] = true
     }
     
-    for item in text {
-        if textCharacters[item] ?? 0 > 1 {
-            return item
-        }
+    for item in array2 {
+        return dict[item] ?? false
     }
     
-    return nil
+    return false
 }
 
-
-reccuringCharacters2(text: "DXBCABAX")
-
+containsCommonItems(arr1, arr2)
